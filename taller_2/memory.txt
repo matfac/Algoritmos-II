@@ -1,0 +1,184 @@
+[23:53:22@src]$ valgrind --leak-check=full -v ./tests
+==20153== Memcheck, a memory error detector
+==20153== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==20153== Using Valgrind-3.12.0.SVN and LibVEX; rerun with -h for copyright info
+==20153== Command: ./tests
+==20153==
+--20153-- Valgrind options:
+--20153--    --leak-check=full
+--20153--    -v
+--20153-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--20153--   Darwin Kernel Version 15.6.0: Thu Jun 23 18:25:34 PDT 2016; root:xnu-3248.60.10~1/RELEASE_X86_64
+--20153-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-avx
+--20153-- Page sizes: currently 4096, max supported 4096
+--20153-- Valgrind library directory: /usr/local/Cellar/valgrind/HEAD-/lib/valgrind
+--20153-- ./tests (rx at 0x100000000, rw at 0x100011000)
+--20153--    reading syms   from primary file (36 779)
+--20153--    dSYM= ./tests.dSYM/Contents/Resources/DWARF/tests
+--20153--    reading dwarf3 from dsyms file
+--20153-- /usr/lib/dyld (rx at 0x7fff5fc00000, rw at 0x7fff5fc38000)
+--20153--    reading syms   from primary file (6 1229)
+--20153-- Scheduler: using generic scheduler lock implementation.
+--20153-- Reading suppressions file: /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp
+==20153== embedded gdbserver: reading from /var/folders/_f/zwtlhqld09s4g0gvwxcls2mr0000gp/T//vgdb-pipe-from-vgdb-to-20153-by-Lucas-on-???
+==20153== embedded gdbserver: writing to   /var/folders/_f/zwtlhqld09s4g0gvwxcls2mr0000gp/T//vgdb-pipe-to-vgdb-from-20153-by-Lucas-on-???
+==20153== embedded gdbserver: shared mem   /var/folders/_f/zwtlhqld09s4g0gvwxcls2mr0000gp/T//vgdb-pipe-shared-mem-vgdb-20153-by-Lucas-on-???
+==20153==
+==20153== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==20153== don't want to do, unless you know exactly what you're doing,
+==20153== or are doing some strange experiment):
+==20153==   /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/../../bin/vgdb --pid=20153 ...command...
+==20153==
+==20153== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==20153==   /path/to/gdb ./tests
+==20153== and then give GDB the following command
+==20153==   target remote | /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/../../bin/vgdb --pid=20153
+==20153== --pid is optional if only one valgrind process is running
+==20153==
+--20153-- REDIR: 0x7fff5fc1d959 (dyld:arc4random) redirected to 0x23805b7e2 (???)
+--20153-- REDIR: 0x7fff5fc23b20 (dyld:strcmp) redirected to 0x23805b744 (???)
+--20153-- REDIR: 0x7fff5fc1d720 (dyld:strlen) redirected to 0x23805b713 (???)
+--20153-- REDIR: 0x7fff5fc1d680 (dyld:strcpy) redirected to 0x23805b760 (???)
+--20153-- REDIR: 0x7fff5fc2107f (dyld:strcat) redirected to 0x23805b724 (???)
+--20153-- REDIR: 0x7fff5fc210bf (dyld:strlcat) redirected to 0x23805b77d (???)
+--20153-- /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x10001d000, rw at 0x100020000)
+--20153--    reading syms   from primary file (3 31)
+--20153--    dSYM= /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--20153-- /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x100022000, rw at 0x100028000)
+--20153--    reading syms   from primary file (72 39)
+--20153--    dSYM= /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--20153-- /usr/lib/libc++.1.dylib (rx at 0x10002b000, rw at 0x10007f000)
+--20153--    reading syms   from primary file (1960 1590)
+--20153-- /usr/lib/libSystem.B.dylib (rx at 0x1000db000, rw at 0x1000dd000)
+--20153--    reading syms   from primary file (31 5)
+--20153-- /usr/lib/libc++abi.dylib (rx at 0x1000e2000, rw at 0x10010d000)
+--20153--    reading syms   from primary file (339 186)
+--20153-- /usr/lib/system/libcache.dylib (rx at 0x10011b000, rw at 0x100120000)
+--20153--    reading syms   from primary file (32 30)
+--20153-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x100125000, rw at 0x100131000)
+--20153--    reading syms   from primary file (214 188)
+--20153-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x10013e000, rw at 0x100146000)
+--20153--    reading syms   from primary file (510 8)
+--20153-- /usr/lib/system/libcopyfile.dylib (rx at 0x100153000, rw at 0x10015c000)
+--20153--    reading syms   from primary file (13 35)
+--20153-- /usr/lib/system/libcorecrypto.dylib (rx at 0x100162000, rw at 0x1001da000)
+--20153--    reading syms   from primary file (430 601)
+--20153-- /usr/lib/system/libdispatch.dylib (rx at 0x1001f2000, rw at 0x100220000)
+--20153--    reading syms   from primary file (215 832)
+--20153-- /usr/lib/system/libdyld.dylib (rx at 0x100249000, rw at 0x10024d000)
+--20153--    reading syms   from primary file (80 109)
+--20153-- /usr/lib/system/libkeymgr.dylib (rx at 0x100254000, rw at 0x100255000)
+--20153--    reading syms   from primary file (12 3)
+--20153-- /usr/lib/system/libmacho.dylib (rx at 0x100260000, rw at 0x100266000)
+--20153--    reading syms   from primary file (97 1)
+--20153-- /usr/lib/system/libquarantine.dylib (rx at 0x10026c000, rw at 0x10026f000)
+--20153--    reading syms   from primary file (67 32)
+--20153-- /usr/lib/system/libremovefile.dylib (rx at 0x100275000, rw at 0x100277000)
+--20153--    reading syms   from primary file (15 4)
+--20153-- /usr/lib/system/libsystem_asl.dylib (rx at 0x10027c000, rw at 0x100294000)
+--20153--    reading syms   from primary file (222 225)
+--20153-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x1002a1000, rw at 0x1002a3000)
+--20153--    reading syms   from primary file (25 22)
+--20153-- /usr/lib/system/libsystem_c.dylib (rx at 0x1002a7000, rw at 0x100335000)
+--20153--    reading syms   from primary file (1303 748)
+--20153-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x100360000, rw at 0x100363000)
+--20153--    reading syms   from primary file (28 57)
+--20153-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x100369000, rw at 0x10036c000)
+--20153--    reading syms   from primary file (13 30)
+--20153-- /usr/lib/system/libsystem_coretls.dylib (rx at 0x100371000, rw at 0x100389000)
+--20153--    reading syms   from primary file (118 233)
+--20153-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x100392000, rw at 0x10039b000)
+--20153--    reading syms   from primary file (68 33)
+--20153-- /usr/lib/system/libsystem_info.dylib (rx at 0x1003a1000, rw at 0x1003cb000)
+--20153--    reading syms   from primary file (526 527)
+--20153-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x1003e0000, rw at 0x1003ff000)
+--20153--    reading syms   from primary file (1069 84)
+--20153-- /usr/lib/system/libsystem_m.dylib (rx at 0x100414000, rw at 0x100444000)
+--20153--    reading syms   from primary file (593 1)
+--20153-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x100450000, rw at 0x10046d000)
+--20153--    reading syms   from primary file (102 201)
+--20153-- /usr/lib/system/libsystem_network.dylib (rx at 0x100476000, rw at 0x1004dd000)
+--20153--    reading syms   from primary file (686 2055)
+--20153-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x100514000, rw at 0x10051d000)
+--20153--    reading syms   from primary file (85 236)
+--20153-- /usr/lib/system/libsystem_notify.dylib (rx at 0x100528000, rw at 0x100532000)
+--20153--    reading syms   from primary file (136 53)
+--20153-- /usr/lib/system/libsystem_platform.dylib (rx at 0x10053a000, rw at 0x100543000)
+--20153--    reading syms   from primary file (142 158)
+--20153-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x10054b000, rw at 0x100555000)
+--20153--    reading syms   from primary file (163 70)
+--20153-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x100562000, rw at 0x100566000)
+--20153--    reading syms   from primary file (80 7)
+--20153-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x10056c000, rw at 0x10056e000)
+--20153--    reading syms   from primary file (3 6)
+--20153-- /usr/lib/system/libsystem_trace.dylib (rx at 0x100573000, rw at 0x100585000)
+--20153--    reading syms   from primary file (94 351)
+--20153-- /usr/lib/system/libunwind.dylib (rx at 0x100597000, rw at 0x10059d000)
+--20153--    reading syms   from primary file (102 52)
+--20153-- /usr/lib/system/libxpc.dylib (rx at 0x1005a4000, rw at 0x1005ce000)
+--20153--    reading syms   from primary file (506 835)
+--20153-- /usr/lib/libobjc.A.dylib (rx at 0x1005ec000, rw at 0x100958000)
+--20153--    reading syms   from primary file (347 935)
+--20153-- /usr/lib/libauto.dylib (rx at 0x100a38000, rw at 0x100a7f000)
+--20153--    reading syms   from primary file (68 658)
+--20153-- /usr/lib/libDiagnosticMessagesClient.dylib (rx at 0x100a94000, rw at 0x100a96000)
+--20153--    reading syms   from primary file (21 14)
+--20153-- REDIR: 0x10053aac0 (libsystem_platform.dylib:_platform_memchr$VARIANT$Generic) redirected to 0x100025717 (_platform_memchr$VARIANT$Generic)
+--20153-- REDIR: 0x10053ac80 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x100025c71 (_platform_memcmp)
+--20153-- REDIR: 0x10053b220 (libsystem_platform.dylib:_platform_strncmp) redirected to 0x1000255f7 (_platform_strncmp)
+--20153-- REDIR: 0x1004510a2 (libsystem_malloc.dylib:malloc) redirected to 0x1000239da (malloc)
+--20153-- REDIR: 0x1002a8120 (libsystem_c.dylib:strlen) redirected to 0x100025272 (strlen)
+--20153-- REDIR: 0x10053b800 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x100025697 (_platform_strcmp)
+--20153-- REDIR: 0x100453e98 (libsystem_malloc.dylib:free) redirected to 0x100023e22 (free)
+--20153-- REDIR: 0x100456431 (libsystem_malloc.dylib:calloc) redirected to 0x10002409a (calloc)
+--20153-- REDIR: 0x100455939 (libsystem_malloc.dylib:malloc_default_zone) redirected to 0x100024e4c (malloc_default_zone)
+--20153-- REDIR: 0x10045255a (libsystem_malloc.dylib:malloc_zone_malloc) redirected to 0x100023c96 (malloc_zone_malloc)
+--20153-- REDIR: 0x100455958 (libsystem_malloc.dylib:malloc_zone_calloc) redirected to 0x10002429c (malloc_zone_calloc)
+--20153-- REDIR: 0x10053b520 (libsystem_platform.dylib:_platform_memmove$VARIANT$Ivybridge) redirected to 0x1000261b9 (_platform_memmove$VARIANT$Ivybridge)
+--20153-- REDIR: 0x100455a12 (libsystem_malloc.dylib:malloc_zone_from_ptr) redirected to 0x100024e8d (malloc_zone_from_ptr)
+--20153-- REDIR: 0x10053b380 (libsystem_platform.dylib:_platform_strchr$VARIANT$Generic) redirected to 0x10002510b (_platform_strchr$VARIANT$Generic)
+--20153-- REDIR: 0x100456634 (libsystem_malloc.dylib:realloc) redirected to 0x10002443e (realloc)
+--20153-- REDIR: 0x1004589e0 (libsystem_malloc.dylib:malloc_zone_memalign) redirected to 0x1000249e4 (malloc_zone_memalign)
+test_vacia...ok
+test_apilar_uno...ok
+test_apilar...ok
+test_tope...ok
+test_desapilar...ok
+test_constructor_copia...ok
+test_asignacion...ok
+copiar_sin_asignacion...ok
+pila_de_pilas...[2, 1][[2, 1]]ok
+copiar_pila_de_pilas...ok
+==20153==
+==20153== HEAP SUMMARY:
+==20153==     in use at exit: 26,466 bytes in 192 blocks
+==20153==   total heap usage: 297 allocs, 105 frees, 32,766 bytes allocated
+==20153==
+==20153== Searching for pointers to 192 not-freed blocks
+==20153== Checked 9,811,560 bytes
+==20153==
+==20153== LEAK SUMMARY:
+==20153==    definitely lost: 0 bytes in 0 blocks
+==20153==    indirectly lost: 0 bytes in 0 blocks
+==20153==      possibly lost: 0 bytes in 0 blocks
+==20153==    still reachable: 4,096 bytes in 1 blocks
+==20153==         suppressed: 22,370 bytes in 191 blocks
+==20153== Reachable blocks (those to which a pointer was found) are not shown.
+==20153== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==20153==
+==20153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 18 from 18)
+--20153--
+--20153-- used_suppression:      1 OSX1011:21-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:944 suppressed: 4,096 bytes in 1 blocks
+--20153-- used_suppression:     11 OSX1011:5-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:787 suppressed: 3,408 bytes in 56 blocks
+--20153-- used_suppression:      3 OSX1011:16-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:897 suppressed: 2,816 bytes in 44 blocks
+--20153-- used_suppression:      2 OSX1011:4-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:778 suppressed: 4,152 bytes in 2 blocks
+--20153-- used_suppression:      4 OSX1011:19-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:924 suppressed: 3,656 bytes in 4 blocks
+--20153-- used_suppression:      3 OSX1011:18-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:915 suppressed: 2,064 bytes in 3 blocks
+--20153-- used_suppression:     19 OSX1011:10-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:839 suppressed: 2,754 bytes in 38 blocks
+--20153-- used_suppression:      2 OSX1011:8-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:819 suppressed: 520 bytes in 2 blocks
+--20153-- used_suppression:      7 OSX1011:7-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:808 suppressed: 688 bytes in 27 blocks
+--20153-- used_suppression:      2 OSX1011:20-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:934 suppressed: 224 bytes in 5 blocks
+--20153-- used_suppression:      8 OSX1011:6-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:797 suppressed: 248 bytes in 8 blocks
+--20153-- used_suppression:      1 OSX1011:17-Leak /usr/local/Cellar/valgrind/HEAD-/lib/valgrind/default.supp:906 suppressed: 32 bytes in 1 blocks
+==20153==
+==20153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 18 from 18)
