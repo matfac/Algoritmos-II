@@ -114,13 +114,10 @@ void pila_de_pilas()
     Pila<aed2::Nat> p;
     p.apilar(1);
     p.apilar(2);
-
     pp.apilar(p);
-    std::cout << p;
   }
 
   ASSERT_EQ(pp.tamanio(), 1);
-  std::cout << pp;
 
   ASSERT_EQ(to_s(pp), "[[2, 1]]");
 
