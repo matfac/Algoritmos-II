@@ -80,34 +80,16 @@ class Pila
   private:
 
     struct Nodo {
-      T* elem;
+      T elem;
       Nodo *sig;
 
-      Nodo(){
-        this->elem = NULL;
-        this->sig = NULL;
+      Nodo(const T& other)
+      :elem(other), sig(NULL){
       }
 
-      Nodo(const T& elem)
-      {
-        this->elem = new T(elem);
-        this->sig = NULL;
+      Nodo(const T& other, Nodo* next)
+      :elem(other), sig(next){
       }
-
-      Nodo(const T& elem, Nodo* next)
-      :sig(next){
-        this->elem = new T(elem);
-      }
-
-      Nodo(const Nodo &n) {
-         this->elem = new T(*n.elem);
-         this->sig = n.sig;
-      }
-
-      ~Nodo(){
-        delete this->elem;
-      }
-
     };
 
     Nodo* tope_;
@@ -124,57 +106,29 @@ Pila<T>::Pila()
 template <typename T>
 Pila<T>::Pila(const Pila& otra)
 {
-    tamanio_ = otra.tamanio_;
-    Nodo* currentOther = otra.tope_;
-    Nodo* current = NULL;
-    tope_ = NULL;
+  tamanio_ = otra.tamanio_;
+  Nodo* currentOther = otra.tope_;
+  Nodo* current = NULL;
+  tope_ = NULL;
 
-    while(currentOther !=NULL){
-      Nodo* aux = new Nodo(*(currentOther->elem));
+  while(currentOther !=NULL){
+    Nodo* aux = new Nodo(currentOther->elem);
 
-      if(tope_ == NULL){
-        tope_ = aux;
-      } else {
-        current->sig = aux;
-      }
-      current = aux;
-      currentOther = currentOther->sig;
+    if(tope_ == NULL){
+      tope_ = aux;
+    } else {
+      current->sig = aux;
+    }
+    current = aux;
+    currentOther = currentOther->sig;
   }
-}
-  /**
-  Alternativa original, no pasa el test de copia pila-pila
-  **/
-  // Nodo * actual = otra.tope_;
-  // while(actual != NULL){
-  //     apilar(*(actual->elem));
-  //     actual = actual->sig;
-  // }
 
-  /**
-  Esta opcion es mas limpia, tira el mismo error de memoria, con lo cual no es problematica pero
-  No me cierra la copia del nodo. (la parte de n.sig)
-  **/
-  // tamanio_ = otra.tamanio_;
-  //
-  // if(otra.tope_!=NULL){
-  //
-  //   Nodo* current = new Nodo(*otra.tope_);
-  //   tope_ = current;
-  //   Nodo* currentOtra = otra.tope_;
-  //
-  //   while(currentOtra->sig !=NULL){
-  //     currentOtra = currentOtra->sig;
-  //     current->sig = new Nodo(*currentOtra);
-  //   }
-  //
-  // } else {
-  //   tope_ = NULL;
-  // }
+}
 
 template <typename T>
 Pila<T>::~Pila()
 {
-  while(tope_!=NULL){
+  while(tamanio_!=0){
     desapilar();
   }
 }
@@ -186,21 +140,6 @@ void Pila<T>::apilar(const T& elem)
   tope_ = nuevoNodo;
   tamanio_ ++;
 }
-/**
-Otra opción horrible de apilar.
-
-Nodo* nodoNuevo = new Nodo(elem);
-
-if(tamanio_ == 0){
-  tope_ = nodoNuevo;
-  tamanio_++;
-  return;
-}
-nodoNuevo->sig = tope_;
-tope_ = nodoNuevo;
-tamanio_++;
-
-**/
 
 template <typename T>
 void Pila<T>::desapilar()
@@ -210,38 +149,23 @@ void Pila<T>::desapilar()
   delete aux;
   tamanio_ --;
 }
-/**
-Opcion anterior de desapilar, menos elegante, retiraba el primero tipo queue
-
-Nodo* actual = tope_;
-Nodo* anterior = tope_;
-
-while(actual->sig !=NULL){
-  anterior = actual;
-  actual = actual->sig;
-}
-
-anterior->sig = NULL;
-delete actual;
-tamanio_--;
-**/
 
 template <typename T>
 bool Pila<T>::esVacia() const
 {
-  return tope_ == NULL;
+  return tamanio_ == 0;
 }
 
 template <typename T>
 T& Pila<T>::tope()
 {
-  return *(tope_->elem);
+  return tope_->elem;
 }
 
 template <typename T>
 const T& Pila<T>::tope() const
 {
-  return *(tope_->elem);
+  return tope_->elem;
 }
 
 template <typename T>
@@ -253,17 +177,15 @@ aed2::Nat Pila<T>::tamanio() const
 template <typename T>
 Pila<T>& Pila<T>::operator = (const Pila& otra)
 {
+  if(this != &otra) {
 
-  while(tope_!=NULL){
-    desapilar();
+    while(tamanio_!=0){
+      desapilar();
+    }
+
+    Pila(otra).swap(*this);
   }
 
-  typename Pila<T>::Nodo * actual = otra.tope_;
-
-  while(actual != NULL){
-      apilar(*(actual->elem));
-      actual = actual->sig;
-  }
   return *this;
 }
 
@@ -275,7 +197,7 @@ std::ostream& operator << (std::ostream& os, const Pila<T>& pila)
   os<<"[";
 
   while(actual!=NULL){
-    os << *(actual->elem);
+    os << actual->elem;
     if(actual->sig !=NULL){
       os<< ", ";
     }
